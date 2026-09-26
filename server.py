@@ -6,6 +6,7 @@ import asyncio
 
 load_dotenv()
 API_KEY = os.getenv("GEOAPIFY_KEY")
+port = int(os.getenv("PORT",8000))
 
 mcp=MCPServer("travel-concierge") #createing an instance of FastMCP class in this case the server instance
 
@@ -101,4 +102,4 @@ async def find_attractions_near(city:str,radiusKm:float = 3.0) -> str:
 
 
 if __name__ == "__main__":
-    mcp.run(transport="streamable-http")
+    mcp.run(transport="streamable-http",host="0.0.0.0",port=port)
